@@ -254,12 +254,10 @@ pr_att_string(
          * classic, 64-bit offset, or classic model files.  For
          * netCDF-4 files, don't generate linebreaks, because that
          * would create an extra string in a list of strings.  */
-        if (!is_json) { // So, omit line-breaks if you are outputting json
-          if (kind != NC_FORMAT_NETCDF4) {
-            printf("\\n\",\n\t\t\t\"");
-          } else {
-            printf("\\n");
-        }
+        if (kind != NC_FORMAT_NETCDF4 && !is_json) {
+          printf("\\n\",\n\t\t\t\"");
+        } else {
+          printf("\\n");
         }
         break;
       case '\r':
